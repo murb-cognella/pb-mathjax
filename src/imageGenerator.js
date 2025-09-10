@@ -34,6 +34,7 @@ module.exports.generate = async (configs, req, res, next) => {
   let myForeground = query.fg;
   let dpi = query.dpi;
   let isSvg = query.svg === true || query.svg === '1' || query.svg === 'true';
+  let forceInline = query.inline === true || query.inline === '1' || query.inline === 'true';
 
     // Configure TeX input
   let tex = new TeX({
@@ -121,7 +122,7 @@ module.exports.generate = async (configs, req, res, next) => {
 
     try {
       const node = mathJaxDocument.convert(cleanMath, {
-        display: !isInline,
+        display: !forceInline && !isInline,
         em: 16,
         ex: 8,
         containerWidth: 1000,
