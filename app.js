@@ -9,6 +9,7 @@ const indexRouter = require('./routes/index');
 const latexRouter = require('./routes/latex');
 const asciiMathRouter = require('./routes/asciimath');
 const mathMlRouter = require('./routes/mathml');
+const markupRouter = require('./routes/markup');
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use('/', indexRouter);
 app.use('/latex', latexRouter);
 app.use('/asciimath', asciiMathRouter);
 app.use('/mathml', mathMlRouter);
+app.use('/markup', markupRouter); 
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
