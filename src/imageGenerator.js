@@ -136,10 +136,13 @@ module.exports.generate = async (configs, req, res, next) => {
         return handleError(res);
       }
 
+      // console.dir(cleanMath);
+      let dataTagged = cleanMath.includes('\\tag') ? '' : 'data-untagged="true"';
+      // console.log("putting this into the svg: " + dataTagged);
       svgContent = svgContent.replace(
           /<svg([^>]*)style="([^"]*)"/,
           `<svg$1style="color: ${myForeground}; $2"`
-      );
+      ).replace(/<svg/,`<svg ${dataTagged}`);
 
       if (svgContent.includes('merror')) {
         return handleError(res);
